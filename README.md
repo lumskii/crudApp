@@ -1,2 +1,2 @@
 # crudApp
-TEsting! by buu truong
+Todo App with CRUD functionalities.
