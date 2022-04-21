@@ -1,3 +1,4 @@
+//Declaring Varibles for the DOM
 let form = document.getElementById("form");
 let textInput = document.getElementById("textInput");
 let dateInput = document.getElementById("dateInput");
@@ -6,6 +7,7 @@ let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
 let add = document.getElementById("add");
 
+//This function makes sure user type in the form correctly
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     formValidation();
@@ -28,21 +30,25 @@ let formValidation = () => {
     }
 };
 
+//A placeholder for the task
 let data = [{}];
 
+//User can delcare task 
 let acceptData = () => {
     data.push({
         text: textInput.value,
         date: dateInput.value,
         description: textarea.value,
     });
-
+    
+    //storing data in browser
     localStorage.setItem("data", JSON.stringify(data));
 
     console.log(data);
     createTasks();
 };
 
+//User input data is rendered on the clients side
 let createTasks = () => {
     tasks.innerHTML = "";
     data.map((x, y) => {
@@ -63,6 +69,7 @@ let createTasks = () => {
     resetForm();
 };
 
+// This deletes tasks
 let deleteTask = (e) => {
     e.parentElement.parentElement.remove();
     data.splice(e.parentElement.parentElement.id, 1);
@@ -71,6 +78,7 @@ let deleteTask = (e) => {
 
 };
 
+// Edits task function
 let editTask = (e) => {
     let selectedTask = e.parentElement.parentElement;
 
@@ -81,6 +89,7 @@ let editTask = (e) => {
     deleteTask(e);
 };
 
+// This resets the form
 let resetForm = () => {
     textInput.value = "";
     dateInput.value = "";
